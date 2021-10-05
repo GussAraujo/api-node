@@ -1,0 +1,8 @@
+{
+    "env": {
+        "MSQL_USER": "root",
+        "MSQL_PASSWORD": "root",
+        "MSQL_DATABASE": "ecomm",
+        "MSQL_HOST": "localhost"
+    }
+}
