@@ -90,7 +90,6 @@ var pedidosController = {
     deletandoPedido: (req, res, next) => {
         mysql.getConnection((err, conn) => {
             if (err) throw err;
-    
             conn.query(
                 'DELETE FROM pedidos WHERE id_pedido = ?',
                 [req.body.id],

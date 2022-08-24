@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const pedidosController = require('../controllers/pedidosController');
 
-router.get('/', pedidosController.todosPedidos);
+router.route('/')
+  .get(pedidosController.todosPedidos)
+  .post(pedidosController.inserirPedido)
+  .patch(pedidosController.atualizandoPedido)
+  .delete(pedidosController.deletandoPedido)
+
 router.get('/:id', pedidosController.umPedido);
-router.post('/', pedidosController.inserirPedido);
-router.patch('/', pedidosController.atualizandoPedido);
-router.delete('/', pedidosController.deletandoPedido);
 
 module.exports = router;

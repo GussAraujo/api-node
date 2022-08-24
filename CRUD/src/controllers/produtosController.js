@@ -7,6 +7,7 @@ var produtosController = {
             conn.query(
                 'SELECT * FROM produtos',
                 (err, result, field) => {
+                    conn.release();
                     if(err){ return res.status(500).send({ error: err }) };
                     return res.status(200).send({ response: result });
                 }
@@ -22,6 +23,7 @@ var produtosController = {
                 'SELECT * FROM produtos WHERE id_produto = ?',
                 [req.params.id],
                 (err, result, field) => {
+                    conn.release();
                     if(err){ return res.status(500).send({ error: err }) };
                     return res.status(200).send({ response: result });
                 }
@@ -33,7 +35,6 @@ var produtosController = {
     inserirProduto: (req, res, next) => {
         mysql.getConnection((err, conn) => {
             if (err) throw err;
-    
             conn.query(
                 'INSERT INTO produtos (nome, preco) VALUES(?,?)',
                 [req.body.nome, req.body.preco],
@@ -52,7 +53,6 @@ var produtosController = {
     atualizandoProduto: (req, res, next) => {
         mysql.getConnection((err, conn) => {
             if (err) throw err;
-    
             conn.query(
                 'UPDATE produtos SET nome = ?, preco = ? WHERE id_produto = ?',
                 [req.body.nome, req.body.preco, req.body.id],
@@ -71,7 +71,6 @@ var produtosController = {
     deletandoProduto: (req, res, next) => {
         mysql.getConnection((err, conn) => {
             if (err) throw err;
-    
             conn.query(
                 'DELETE FROM produtos WHERE id_produto = ?',
                 [req.body.id],
